@@ -249,12 +249,14 @@ html, body {
 }
 
 .form-calculator input, .form-calculator select {
-    padding: 2.5vh 1.5rem;
+    width: 100%;
+    min-width: 0;
+    padding: 2.5vh 1rem;
     border: 1px solid var(--border);
     border-radius: 20px;
     background-color: var(--surface-color);
     color: var(--text-main);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     outline: none;
     appearance: none;
 }

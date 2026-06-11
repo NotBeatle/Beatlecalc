@@ -192,17 +192,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const calcBmiBtn = document.getElementById('calcBmiBtn');
     if (calcBmiBtn) {
         calcBmiBtn.addEventListener('click', () => {
+            const age = parseInt(document.getElementById('ageInput').value);
+            const gender = document.getElementById('genderSelect').value;
             const height = parseFloat(document.getElementById('heightInput').value) / 100;
             const weight = parseFloat(document.getElementById('weightInput').value);
             const bmiResult = document.getElementById('bmiResult');
 
-            if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
-                if(bmiResult) bmiResult.textContent = 'Invalid input';
+            if (isNaN(age) || age <= 0 || isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+                if(bmiResult) {
+                    bmiResult.textContent = 'Invalid input';
+                    bmiResult.className = 'result-box';
+                }
                 return;
             }
 
             const bmi = (weight / (height * height)).toFixed(1);
-            if(bmiResult) bmiResult.textContent = `BMI: ${bmi}`;
+            let category = '';
+            let colorClass = '';
+
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                colorClass = 'bmi-underweight';
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                category = 'Normal';
+                colorClass = 'bmi-normal';
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                category = 'Overweight';
+                colorClass = 'bmi-overweight';
+            } else {
+                category = 'Obese';
+                colorClass = 'bmi-obese';
+            }
+
+            if(bmiResult) {
+                bmiResult.textContent = `BMI: ${bmi} (${category})`;
+                bmiResult.className = `result-box ${colorClass}`;
+            }
+            
             saveToHistory('BMI', `${weight}kg / ${height}m`, bmi);
         });
     }
@@ -385,37 +411,4 @@ document.addEventListener('DOMContentLoaded', () => {
         fromCurrency.value = "EUR";
         toCurrency.value = "INR";
 
-        convertCurrencyBtn.addEventListener('click', async () => {
-            const amount = parseFloat(document.getElementById('amountInput').value);
-            const currencyResult = document.getElementById('currencyResult');
-            const from = fromCurrency.value;
-            const to = toCurrency.value;
-
-            if (isNaN(amount) || amount <= 0) {
-                if(currencyResult) currencyResult.textContent = 'Invalid amount';
-                return;
-            }
-
-            if(currencyResult) currencyResult.textContent = '...';
-
-            try {
-                const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
-                const data = await response.json();
-                
-                if (data.rates[to]) {
-                    const rate = data.rates[to];
-                    const converted = (amount * rate).toFixed(2);
-                    const fromSym = currencyData[from].symbol;
-                    const toSym = currencyData[to].symbol;
-                    
-                    if(currencyResult) currencyResult.textContent = `${fromSym}${amount} = ${toSym}${converted}`;
-                    saveToHistory('FX', `${fromSym}${amount} to ${to}`, `${toSym}${converted}`);
-                } else {
-                     if(currencyResult) currencyResult.textContent = 'Currency not supported by API';
-                }
-            } catch (error) {
-                if(currencyResult) currencyResult.textContent = 'API Error';
-            }
-        });
-    }
-});
+        convertCurrencyBtn.addEventListener('click', a

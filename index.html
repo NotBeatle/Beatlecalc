@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beatle Calc | Minimal Utility</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="manifest.json">
+    <title>Beatle Calc | Native Utility</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -54,6 +58,19 @@
 
                 <section id="bmi" class="tool-section form-section">
                     <div class="form-calculator">
+                        <div style="display: flex; gap: 3vw;">
+                            <div class="input-group" style="flex: 1;">
+                                <label for="ageInput">Age</label>
+                                <input type="number" id="ageInput" placeholder="25">
+                            </div>
+                            <div class="input-group" style="flex: 1;">
+                                <label for="genderSelect">Gender</label>
+                                <select id="genderSelect">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="input-group">
                             <label for="heightInput">Height (cm)</label>
                             <input type="number" id="heightInput" placeholder="175">
@@ -97,7 +114,7 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="brand">
-                    <h2>Beatle Calc</h2>
+                    <h2>Prathamesh ©</h2>
                 </div>
                 <button id="closeMenuBtn" class="icon-btn">✕</button>
             </div>
@@ -114,5 +131,12 @@
     </div>
 
     <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(()=>{});
+            });
+        }
+    </script>
 </body>
 </html>

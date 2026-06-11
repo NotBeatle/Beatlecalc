@@ -391,33 +391,32 @@ button {
 
 }
 
-@media (min-width: 768px) {
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-color: #121212;
-    }
-
-    header, .tab-menu, main, footer {
-        width: 100%;
-        max-width: 400px; 
-        margin: 0 auto;
+@media (min-width: 992px) {
+    .tab-menu {
+        display: none !important;
     }
 
     main {
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
-        overflow: hidden;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 30px;
+        max-width: 1400px;
+        margin: 50px auto;
+        padding: 0 30px;
     }
 
-    .tab-menu {
+    .tab-content {
+        display: block !important;
+        flex: 1;
+        min-width: 300px;
         max-width: 400px;
-        border-radius: 20px 20px 0 0;
+        background: var(--bg-color, #1e1e1e);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
 }
+

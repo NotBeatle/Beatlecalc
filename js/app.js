@@ -213,10 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (bmi < 18.5) {
                 category = 'Underweight';
                 colorClass = 'bmi-underweight';
-            } else if (bmi >= 18.5 && bmi <= 24.9) {
+            } else if (bmi < 25) {
                 category = 'Normal';
                 colorClass = 'bmi-normal';
-            } else if (bmi >= 25 && bmi <= 29.9) {
+            } else if (bmi < 30) {
                 category = 'Overweight';
                 colorClass = 'bmi-overweight';
             } else {
@@ -411,4 +411,5 @@ document.addEventListener('DOMContentLoaded', () => {
         fromCurrency.value = "EUR";
         toCurrency.value = "INR";
 
-        convertCurrencyBtn.addEventListener('click', a
+        convertCurrencyBtn.addEventListener('click', async () => {
+            const amo

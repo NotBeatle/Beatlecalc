@@ -376,3 +376,8 @@ html, body {
     display: block;
     opacity: 1;
 }
+
+.bmi-underweight { color: #3b82f6 !important; }
+.bmi-normal { color: #10b981 !important; }
+.bmi-overweight { color: #f59e0b !important; }
+.bmi-obese { color: #ef4444 !important; }

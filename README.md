@@ -21,3 +21,6 @@ I also packaged the web app into a native Android app!
 
 ### How to Run Locally
 Download the ZIP -> Extract -> Open `index.html` in any browser. *(Needs internet for live currency rates).*
+
+---
+&copy; 2026 Prathamesh Sathe. All rights reserved.

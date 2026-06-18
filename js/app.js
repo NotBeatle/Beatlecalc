@@ -1,18 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') document.body.setAttribute('data-theme', 'dark');
+        
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '☀️';
+        } else {
+            themeToggle.textContent = '🌙';
+        }
 
         themeToggle.addEventListener('click', () => {
             const isDark = document.body.getAttribute('data-theme') === 'dark';
+            
             if (isDark) {
                 document.body.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌙';
             } else {
                 document.body.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
             }
         });
     }
@@ -50,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetSection = document.getElementById(targetId);
             
             if (targetSection) targetSection.classList.add('active-tool');
-            if (currentToolTitle) currentToolTitle.textContent = btn.textContent;
+            if (currentToolTitle) currentToolTitle.textContent = btn.textContent === "Standard" ? "Standard Calculator" : btn.textContent;
             
             closeMenu();
         });
@@ -69,21 +77,72 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const globalHistoryList = document.getElementById('globalHistoryList');
     
+    function getHistory() {
+        try {
+            let data = localStorage.getItem('calcHistory');
+            let parsed = data ? JSON.parse(data) : [];
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+            localStorage.removeItem('calcHistory'); 
+            return [];
+        }
+    }
+
     function renderHistory() {
         if (!globalHistoryList) return;
-        const history = JSON.parse(localStorage.getItem('calcHistory')) || [];
+        const history = getHistory();
         globalHistoryList.innerHTML = '';
+        
+        if (history.length === 0) {
+            globalHistoryList.innerHTML = '<li style="text-align:center; color:var(--text-muted); border:none; background:none; padding-top: 20px;">No history yet.</li>';
+            return;
+        }
+
         history.forEach(item => {
             const li = document.createElement('li');
-            li.innerHTML = `<span style="opacity:0.5; margin-right:8px;">${item.toolName}</span> ${item.operation} = <strong>${item.result}</strong>`;
+            li.style.cursor = 'pointer';
+            li.style.transition = 'opacity 0.2s';
+            
+            li.addEventListener('mousedown', () => li.style.opacity = '0.5');
+            li.addEventListener('mouseup', () => li.style.opacity = '1');
+            li.addEventListener('mouseleave', () => li.style.opacity = '1');
+
+            li.innerHTML = `
+                <div style="font-size: 0.85em; color: var(--text-muted); margin-bottom: 5px;">
+                    <strong>${item.toolName || 'Log'}</strong> • ${item.timestamp ? new Date(item.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Just now'}
+                </div>
+                <div style="font-size: 1.1em;">
+                    ${item.operation} = <strong style="color: var(--accent);">${item.result}</strong>
+                </div>
+            `;
+
+            li.addEventListener('click', () => {
+                let target = '';
+                if (item.toolName === 'Math') target = 'standard';
+                else if (item.toolName === 'BMI') target = 'bmi';
+                else if (item.toolName === 'FX') target = 'currency';
+                else if (item.toolName === 'Age') target = 'age-calc';
+
+                if (target) {
+                    const navBtn = document.querySelector(`.nav-btn[data-target="${target}"]`);
+                    if (navBtn) navBtn.click();
+
+                    if (item.toolName === 'Math') {
+                        document.dispatchEvent(new CustomEvent('resumeMath', { 
+                            detail: { result: item.result, operation: item.operation } 
+                        }));
+                    }
+                }
+            });
+
             globalHistoryList.appendChild(li);
         });
     }
 
     function saveToHistory(toolName, operation, result) {
-        let history = JSON.parse(localStorage.getItem('calcHistory')) || [];
+        let history = getHistory();
         history.unshift({ toolName, operation, result, timestamp: new Date().toISOString() });
-        if (history.length > 8) history.pop();
+        if (history.length > 20) history.pop();
         localStorage.setItem('calcHistory', JSON.stringify(history));
         renderHistory();
     }
@@ -114,6 +173,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 calcHistory.textContent = currentOperation ? `${previousOperand} ${currentOperation}` : '';
             }
         }
+
+        document.addEventListener('resumeMath', (e) => {
+            currentOperand = e.detail.result.toString();
+            previousOperand = '';
+            currentOperation = null;
+            shouldResetDisplay = true;
+            calcDisplay.textContent = currentOperand;
+            if (calcHistory) calcHistory.textContent = `${e.detail.operation} =`;
+        });
 
         function appendNumber(number) {
             if (currentOperand === '0' || shouldResetDisplay) {
@@ -148,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 default: return;
             }
 
-            saveToHistory('Calc', `${prev} ${currentOperation} ${current}`, computation);
+            saveToHistory('Math', `${prev} ${currentOperation} ${current}`, computation);
             currentOperand = computation.toString();
             currentOperation = null;
             previousOperand = '';
@@ -193,7 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (calcBmiBtn) {
         calcBmiBtn.addEventListener('click', () => {
             const age = parseInt(document.getElementById('ageInput').value);
-            const gender = document.getElementById('genderSelect').value;
             const height = parseFloat(document.getElementById('heightInput').value) / 100;
             const weight = parseFloat(document.getElementById('weightInput').value);
             const bmiResult = document.getElementById('bmiResult');
@@ -230,6 +297,55 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             saveToHistory('BMI', `${weight}kg / ${height}m`, bmi);
+        });
+    }
+
+    const dobInput = document.getElementById('dobInput');
+    const calcAgeBtn = document.getElementById('calcAgeBtn');
+    
+    if (dobInput && typeof flatpickr !== 'undefined') {
+        flatpickr(dobInput, {
+            disableMobile: true,
+            maxDate: "today",
+            dateFormat: "Y-m-d"
+        });
+    }
+
+    if (calcAgeBtn) {
+        calcAgeBtn.addEventListener('click', () => {
+            const dobVal = dobInput.value;
+            const ageResult = document.getElementById('ageResult');
+            
+            if (!dobVal) {
+                ageResult.textContent = 'Please select a valid date.';
+                return;
+            }
+
+            const dob = new Date(dobVal);
+            const today = new Date();
+
+            let years = today.getFullYear() - dob.getFullYear();
+            let months = today.getMonth() - dob.getMonth();
+            let days = today.getDate() - dob.getDate();
+
+            if (days < 0) {
+                months--;
+                const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            ageResult.innerHTML = `
+                <strong style="color:var(--accent); font-size: 2rem;">${years}</strong> Years<br>
+                <strong style="color:var(--accent); font-size: 2rem;">${months}</strong> Months<br>
+                <strong style="color:var(--accent); font-size: 2rem;">${days}</strong> Days
+            `;
+
+            saveToHistory('Age', `DOB: ${dobVal}`, `${years}y ${months}m`);
         });
     }
 
@@ -408,7 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toCurrency.appendChild(new Option(optionText, code));
         });
 
-        fromCurrency.value = "EUR";
+        fromCurrency.value = "USD";
         toCurrency.value = "INR";
 
         convertCurrencyBtn.addEventListener('click', async () => {
@@ -422,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            if(currencyResult) currencyResult.textContent = '...';
+            if(currencyResult) currencyResult.textContent = 'Fetching rates...';
 
             try {
                 const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
@@ -434,14 +550,46 @@ document.addEventListener('DOMContentLoaded', () => {
                     const fromSym = currencyData[from].symbol;
                     const toSym = currencyData[to].symbol;
                     
-                    if(currencyResult) currencyResult.textContent = `${fromSym}${amount} = ${toSym}${converted}`;
-                    saveToHistory('FX', `${fromSym}${amount} to ${to}`, `${toSym}${converted}`);
+                    if(currencyResult) currencyResult.innerHTML = `<span style="color:var(--text-muted); font-size: 1.2rem;">${fromSym}${amount}</span><br>=<br><span style="color:var(--accent); font-size: 2rem;">${toSym}${converted}</span>`;
+                    
+                    saveToHistory('FX', `${fromSym}${amount} → ${to}`, `${toSym}${converted}`);
                 } else {
-                     if(currencyResult) currencyResult.textContent = 'Currency not supported by API';
+                     if(currencyResult) currencyResult.textContent = 'Currency not supported';
                 }
             } catch (error) {
-                if(currencyResult) currencyResult.textContent = 'API Error';
+                if(currencyResult) currencyResult.textContent = 'API Error / Offline';
             }
         });
     }
+    document.addEventListener('keydown', function(event) {
+        if (document.activeElement.tagName === 'INPUT') return;
+
+        const key = event.key;
+        let targetButton = null;
+
+        if (/[0-9\.]/.test(key)) {
+            targetButton = document.querySelector(`.key.number[data-val="${key}"]`);
+        } else if (['+', '-', '*', '/', '%'].includes(key)) {
+            targetButton = document.querySelector(`.key.operator[data-val="${key}"]`);
+        } else if (key === 'Enter' || key === '=') {
+            event.preventDefault();
+            targetButton = document.querySelector('.key.equals');
+        } else if (key === 'Backspace') {
+            targetButton = document.querySelector('.key.action[data-action="delete"]');
+        } else if (key === 'Escape') {
+            targetButton = document.querySelector('.key.action[data-action="clear"]');
+        }
+
+        if (targetButton) {
+            targetButton.click();
+            
+            const originalBg = targetButton.style.backgroundColor || '';
+            targetButton.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+            
+            setTimeout(() => {
+                targetButton.style.backgroundColor = originalBg;
+            }, 100);
+        }
+    });
+
 });

@@ -7,7 +7,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
     <title>Beatle Calc | Native Utility</title>
-    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
     <div class="app-container">
@@ -101,41 +102,82 @@
                         <div id="currencyResult" class="result-box"></div>
                     </div>
                 </section>
-            </div>
 
-            <div class="history-panel">
-                <h3>History</h3>
-                <ul id="globalHistoryList"></ul>
-                <button id="clearHistoryBtn" class="text-btn">Clear History</button>
+                <section id="age-calc" class="tool-section form-section">
+                    <div class="form-calculator">
+                        <div class="input-group">
+                            <label for="dobInput">Date of Birth</label>
+                            <input type="text" id="dobInput" placeholder="Select Date">
+                        </div>
+                        <button id="calcAgeBtn" class="primary-btn">Calculate Age</button>
+                        <div id="ageResult" class="result-box" style="text-align: left; line-height: 1.5; font-size: 1.5rem;"></div>
+                    </div>
+                </section>
+
+                <section id="history" class="tool-section">
+                    <div class="history-panel">
+                        <ul id="globalHistoryList"></ul>
+                        <button id="clearHistoryBtn" class="primary-btn" style="background-color: #ef4444; color: white;">Clear History</button>
+                    </div>
+                </section>
             </div>
         </main>
 
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="brand">
-                    <h2>Prathamesh ©</h2>
+                    <h2>Beatle Calc</h2>
                 </div>
                 <button id="closeMenuBtn" class="icon-btn">✕</button>
             </div>
+            
             <div class="search-container">
-                <input type="text" id="toolSearch" placeholder="Search...">
+                <input type="text" id="toolSearch" placeholder="Search tools...">
             </div>
+            
             <nav class="tool-list" id="toolList">
                 <button class="nav-btn active" data-target="standard">Standard</button>
                 <button class="nav-btn" data-target="bmi">BMI</button>
                 <button class="nav-btn" data-target="currency">Currency</button>
+                <button class="nav-btn" data-target="age-calc">Age Calculator</button>
             </nav>
+            
+            <div style="margin-top: auto; display: flex; flex-direction: column; gap: 5px; padding-top: 20px; border-top: 1px solid var(--border);">
+                <button class="nav-btn" data-target="history">History</button>
+                
+                <button class="nav-btn" onclick="window.location.replace('about.html'); return false;">About</button>
+                
+                <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 15px;">
+                    &copy; 2026 Prathamesh Sathe.<br>
+                    <a href="#" onclick="window.location.replace('privacy.html'); return false;" style="color: var(--text-main); text-decoration: underline; margin-top: 8px; display: inline-block;">Privacy Policy</a>
+                </div>
+            </div>
         </aside>
         <div class="overlay" id="overlay"></div>
     </div>
-<div style="text-align: center; padding: 20px 10px; font-size: 12px; color: var(--text-color); opacity: 0.6; width: 100%;">
-  &copy; 2026 Prathamesh Sathe. All rights reserved.
-</div>
-        <footer style="text-align: center; padding: 20px 10px; font-size: 12px; color: var(--text-color); opacity: 0.6; width: 100%; margin-top: auto;">
-        &copy; 2026 Prathamesh Sathe. All rights reserved.<br>
-        <a href="privacy.html" style="color: var(--text-color); text-decoration: underline; margin-top: 5px; display: inline-block;">Privacy Policy</a>
-        </footer>
-    
-    <script src="js/app.js?v=2"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/app.js?v=8"></script>
+
+    <script src="cordova.js"></script>
+    <script>
+        document.addEventListener("deviceready", function() {
+            document.addEventListener("backbutton", function (e) {
+                var overlay = document.getElementById('overlay');
+                var sidebar = document.getElementById('sidebar');
+                
+                // Check if the sidebar menu is currently open (checking if overlay is active/visible)
+                if (overlay && (overlay.classList.contains('active') || overlay.style.display === 'block')) {
+                    // Prevent the app from closing, and just click your existing close button instead
+                    e.preventDefault();
+                    document.getElementById('closeMenuBtn').click();
+                } else {
+                    // If the menu is closed and we are on the main app screen, exit the app entirely
+                    e.preventDefault();
+                    navigator.app.exitApp();
+                }
+            }, false);
+        }, false);
+    </script>
 </body>
 </html>

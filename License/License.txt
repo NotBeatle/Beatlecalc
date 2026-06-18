@@ -1,0 +1,5 @@
+Copyright (c) 2026 Prathamesh Sathe. All Rights Reserved.
+
+This software and its associated documentation are the proprietary property of Prathamesh Sathe. 
+You may not copy, modify, distribute, sell, or lease any part of this software or its source code. 
+Reverse engineering, decompiling, or extracting the source code is strictly prohibited.

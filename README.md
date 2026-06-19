@@ -12,7 +12,7 @@ Built for my IT Ausbildung portfolio. I made this using strictly **pure HTML, CS
 * **Dark Mode:** Saves your preference instantly to `localStorage`.
 
 ### 📱💻 Fully Responsive & Browser-Based
-This is a lightweight web app that runs directly in your browser. I have optimized it so it looks and works perfectly on **any screen size**—whether you are using a mobile phone, a tablet, or a desktop PC. 
+This is a lightweight web app that runs directly in your browser. I have optimized it so it looks and works perfectly on **any screen size**—whether you are using a mobile phone or a tablet 
 
 ### 📦 Android App Version
 I also packaged the web app into a true native Android app using Apache Cordova, complete with native back-button navigation! 

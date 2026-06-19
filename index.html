@@ -7,14 +7,37 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
     <title>Beatle Calc | Native Utility</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="css/style.css?v=8">
+    <style>
+        /* FIX: Ensure the 6-row Pro keypad fits perfectly on the screen without cutting off */
+        .calculator-standard {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .keypad {
+            grid-template-rows: repeat(6, minmax(0, 1fr)) !important; /* Forces 6 equal rows */
+            gap: 10px !important; /* Slightly tighter gap to save vertical space */
+            padding-bottom: env(safe-area-inset-bottom, 10px);
+        }
+        .key {
+            min-height: 0 !important; /* Crucial: allows buttons to shrink to fit the screen height */
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
         <main class="main-content">
-            <header class="top-bar">
-                <h1 id="currentToolTitle">Standard Calculator</h1>
+            <header class="top-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2vh; flex: 0 0 auto;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <button id="globalBackBtn" class="nav-btn icon-btn" data-target="standard" style="display: none; padding: 0; margin-right: 5px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </button>
+                    <h1 id="currentToolTitle" style="margin: 0;">Main Calculator</h1>
+                </div>
                 <div class="header-controls">
                     <button id="themeToggle" class="icon-btn">🌙</button>
                     <button id="menuToggle" class="icon-btn">☰</button>
@@ -25,10 +48,18 @@
                 <section id="standard" class="tool-section active-tool">
                     <div class="calculator-standard">
                         <div class="display">
-                            <div class="history-display" id="calcHistory"></div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 5px;">
+                                <div id="memoryIndicator" style="color: var(--accent); font-weight: bold; font-size: 1.1rem; opacity: 0; transition: opacity 0.2s;">M</div>
+                                <div class="history-display" id="calcHistory" style="margin: 0;"></div>
+                            </div>
                             <div class="main-display" id="calcDisplay">0</div>
                         </div>
                         <div class="keypad">
+                            <button class="key action" data-action="mc" style="background-color: var(--surface-color); color: var(--text-main); font-size: 1.1rem;">MC</button>
+                            <button class="key action" data-action="mr" style="background-color: var(--surface-color); color: var(--text-main); font-size: 1.1rem;">MR</button>
+                            <button class="key action" data-action="m-minus" style="background-color: var(--surface-color); color: var(--text-main); font-size: 1.1rem;">M-</button>
+                            <button class="key action" data-action="m-plus" style="background-color: var(--surface-color); color: var(--text-main); font-size: 1.1rem;">M+</button>
+
                             <button class="key action" data-action="clear">C</button>
                             <button class="key action" data-action="delete">DEL</button>
                             <button class="key operator" data-action="operator" data-val="%">%</button>
@@ -107,7 +138,7 @@
                     <div class="form-calculator">
                         <div class="input-group">
                             <label for="dobInput">Date of Birth</label>
-                            <input type="text" id="dobInput" placeholder="Select Date">
+                            <input type="date" id="dobInput" style="font-family: inherit; color: var(--text-main); text-transform: uppercase;">
                         </div>
                         <button id="calcAgeBtn" class="primary-btn">Calculate Age</button>
                         <div id="ageResult" class="result-box" style="text-align: left; line-height: 1.5; font-size: 1.5rem;"></div>
@@ -120,62 +151,138 @@
                         <button id="clearHistoryBtn" class="primary-btn" style="background-color: #ef4444; color: white;">Clear History</button>
                     </div>
                 </section>
+
+                <section id="about" class="tool-section about-page" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; background-color: var(--bg-color); flex-direction: column; padding: 24px; padding-bottom: 90px; box-sizing: border-box;">
+                    <div class="top-bar" style="display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 25px; min-height: 32px;">
+                        <button class="nav-btn close-btn" data-target="standard" style="position: absolute; left: 0; background: none; border: none; color: var(--text-main); cursor: pointer; padding: 0; display: flex; align-items: center;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        </button>
+                        <h1 class="page-title" style="font-size: 22px; font-weight: 700; margin: 0; color: var(--text-main); text-align: center;">About</h1>
+                    </div>
+                    <div class="content" style="flex-grow: 1; overflow-y: auto;">
+                        <div class="app-header">
+                            <h2 style="font-size: 20px; margin: 0 0 4px 0; color: var(--text-main);">Beatle Calc</h2>
+                            <p style="color: var(--text-muted); font-size: 14px; margin: 0;">Version 1.0.0</p>
+                        </div>
+                        <hr style="border: 0; border-top: 1px solid var(--border); margin: 30px 0;">
+                        <div class="legal-text" style="color: var(--text-muted); line-height: 1.6; font-size: 13px;">
+                            <strong style="color: var(--text-main); display: block; margin-bottom: 12px; font-size: 15px;">Copyright &copy; 2026 Prathamesh Sathe.<br>All Rights Reserved.</strong>
+                            <p>This application and its underlying source code are the exclusive proprietary property of Prathamesh Sathe.</p>
+                            <p>Unauthorized copying, modification, reverse engineering, decompilation, redistribution, or publishing of this software or any portion of its files is strictly prohibited.</p>
+                        </div>
+                        <hr style="border: 0; border-top: 1px solid var(--border); margin: 30px 0;">
+                    </div>
+                    <div class="bottom-nav" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 16px 24px 24px 24px; background: linear-gradient(transparent, var(--bg-color) 20%); box-sizing: border-box;">
+                        <button class="nav-btn return-btn" data-target="standard" style="display: block; width: 100%; padding: 16px; background-color: var(--text-main); color: var(--bg-color); text-align: center; border-radius: 9999px; font-size: 16px; font-weight: 500; border: none; cursor: pointer;">Return to App</button>
+                    </div>
+                </section>
+
+                <section id="privacy" class="tool-section about-page" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; background-color: var(--bg-color); flex-direction: column; padding: 24px; padding-bottom: 90px; box-sizing: border-box;">
+                    <div class="top-bar" style="display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 25px; min-height: 32px;">
+                        <button class="nav-btn close-btn" data-target="standard" style="position: absolute; left: 0; background: none; border: none; color: var(--text-main); cursor: pointer; padding: 0; display: flex; align-items: center;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        </button>
+                        <h1 class="page-title" style="font-size: 22px; font-weight: 700; margin: 0; color: var(--text-main); text-align: center;">Privacy Policy</h1>
+                    </div>
+                    <div class="content" style="flex-grow: 1; overflow-y: auto;">
+                        <div class="legal-text" style="color: var(--text-muted); line-height: 1.4; font-size: 13px;">
+                            <p style="margin-top: 0; margin-bottom: 12px;">Your privacy is important to us. This application is designed to function as a standalone offline utility.</p>
+                            <h2 style="color: var(--text-main); font-size: 15px; margin-top: 16px; margin-bottom: 6px;">1. Data Collection</h2>
+                            <p style="margin-top: 0; margin-bottom: 12px;">We do not collect, store, or transmit any personally identifiable information. All calculations and app operations are performed locally on your device.</p>
+                            <h2 style="color: var(--text-main); font-size: 15px; margin-top: 16px; margin-bottom: 6px;">2. Network Requests</h2>
+                            <p style="margin-top: 0; margin-bottom: 12px;">If the app utilizes third-party APIs for specific features, your IP address may be exposed to this third-party service as part of a standard network request, but absolutely no personal or identifiable data is transmitted by our application.</p>
+                            <h2 style="color: var(--text-main); font-size: 15px; margin-top: 16px; margin-bottom: 6px;">3. Policy Updates</h2>
+                            <p style="margin-top: 0; margin-bottom: 12px;">We reserve the right to update this Privacy Policy as new features are added. Any changes will be immediately reflected on this page within the application.</p>
+                        </div>
+                        <hr style="border: 0; border-top: 1px solid var(--border); margin: 20px 0;">
+                        <div class="policy-footer" style="text-align: center; color: var(--text-muted); font-size: 12px; margin-top: 20px;">
+                            Effective Date: June 2026<br>
+                            &copy; 2026 Prathamesh Sathe
+                        </div>
+                    </div>
+                    <div class="bottom-nav" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 16px 24px 24px 24px; background: linear-gradient(transparent, var(--bg-color) 20%); box-sizing: border-box;">
+                        <button class="nav-btn return-btn" data-target="standard" style="display: block; width: 100%; padding: 16px; background-color: var(--text-main); color: var(--bg-color); text-align: center; border-radius: 9999px; font-size: 16px; font-weight: 500; border: none; cursor: pointer;">Return to App</button>
+                    </div>
+                </section>
             </div>
         </main>
 
         <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
+            <div class="sidebar-header" style="margin-bottom: 20px;">
                 <div class="brand">
                     <h2>Beatle Calc</h2>
                 </div>
                 <button id="closeMenuBtn" class="icon-btn">✕</button>
             </div>
             
-            <div class="search-container">
-                <input type="text" id="toolSearch" placeholder="Search tools...">
+            <div class="search-container" style="margin-bottom: 15px;">
+                <input type="text" id="toolSearch" placeholder="Search tools..." style="width: 100%; padding: 14px 18px; border-radius: 14px; background-color: var(--bg-color); color: var(--text-main); border: none; outline: none; font-size: 1rem;">
             </div>
             
-            <nav class="tool-list" id="toolList">
-                <button class="nav-btn active" data-target="standard">Standard</button>
-                <button class="nav-btn" data-target="bmi">BMI</button>
-                <button class="nav-btn" data-target="currency">Currency</button>
-                <button class="nav-btn" data-target="age-calc">Age Calculator</button>
+            <div style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; padding-left: 12px;">
+                Utility Tools
+            </div>
+            
+            <nav class="tool-list" id="toolList" style="display: flex; flex-direction: column; gap: 4px;">
+                <button class="nav-btn" data-target="bmi" style="padding: 12px 15px; display: flex; align-items: center; gap: 12px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path></svg>
+                    BMI Calculator
+                </button>
+                <button class="nav-btn" data-target="currency" style="padding: 12px 15px; display: flex; align-items: center; gap: 12px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    Currency Converter
+                </button>
+                <button class="nav-btn" data-target="age-calc" style="padding: 12px 15px; display: flex; align-items: center; gap: 12px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Age Calculator
+                </button>
             </nav>
             
-            <div style="margin-top: auto; display: flex; flex-direction: column; gap: 5px; padding-top: 20px; border-top: 1px solid var(--border);">
-                <button class="nav-btn" data-target="history">History</button>
+            <div style="margin-top: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 25px; border-top: 1px solid var(--border);">
+                <button class="nav-btn" data-target="history" style="padding: 12px 15px; display: flex; align-items: center; gap: 12px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    History
+                </button>
+                <button class="nav-btn" data-target="about" style="padding: 12px 15px; display: flex; align-items: center; gap: 12px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    About
+                </button>
                 
-                <button class="nav-btn" onclick="window.location.replace('about.html'); return false;">About</button>
-                
-                <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 15px;">
+                <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 20px; line-height: 1.8;">
                     &copy; 2026 Prathamesh Sathe.<br>
-                    <a href="#" onclick="window.location.replace('privacy.html'); return false;" style="color: var(--text-main); text-decoration: underline; margin-top: 8px; display: inline-block;">Privacy Policy</a>
+                    <button class="nav-btn" data-target="privacy" style="color: var(--text-muted); text-decoration: underline; background: none; border: none; padding: 0; cursor: pointer; font-size: 12px; display: inline-block; width: auto; text-align: center;">Privacy Policy</button>
                 </div>
             </div>
         </aside>
         <div class="overlay" id="overlay"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="js/app.js?v=8"></script>
-
+    <script src="js/app.js?v=9"></script>
     <script src="cordova.js"></script>
     <script>
         document.addEventListener("deviceready", function() {
             document.addEventListener("backbutton", function (e) {
                 var overlay = document.getElementById('overlay');
-                var sidebar = document.getElementById('sidebar');
+                var standardSection = document.getElementById('standard');
                 
-                // Check if the sidebar menu is currently open (checking if overlay is active/visible)
-                if (overlay && (overlay.classList.contains('active') || overlay.style.display === 'block')) {
-                    // Prevent the app from closing, and just click your existing close button instead
+                if (overlay && (overlay.classList.contains('active') || overlay.style.display === 'block' || overlay.classList.contains('show'))) {
                     e.preventDefault();
                     document.getElementById('closeMenuBtn').click();
-                } else {
-                    // If the menu is closed and we are on the main app screen, exit the app entirely
+                    return;
+                } 
+                
+                if (standardSection && !standardSection.classList.contains('active-tool')) {
                     e.preventDefault();
-                    navigator.app.exitApp();
+                    var globalBackBtn = document.getElementById('globalBackBtn');
+                    if (globalBackBtn) {
+                        globalBackBtn.click();
+                    }
+                    return;
                 }
+                
+                e.preventDefault();
+                navigator.app.exitApp();
+                
             }, false);
         }, false);
     </script>

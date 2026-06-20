@@ -397,7 +397,6 @@ document.addEventListener('DOMContentLoaded', () => {
             saveToHistory('Age', `DOB: ${dobVal}`, `${years}y ${months}m`);
         });
     }
-
     
     const currencyData = {
         "AED": { name: "🇦🇪 UAE Dirham", symbol: "د.إ", rate: 3.67 },
@@ -453,4 +452,187 @@ document.addEventListener('DOMContentLoaded', () => {
         "GIP": { name: "🇬🇮 Gibraltar Pound", symbol: "£", rate: 0.79 },
         "GMD": { name: "🇬🇲 Gambian Dalasi", symbol: "D", rate: 67.50 },
         "GNF": { name: "🇬🇳 Guinean Franc", symbol: "FG", rate: 8580.00 },
-        "GTQ": { name: "🇬🇹 Guatem
+        "GTQ": { name: "🇬🇹 Guatemalan Quetzal", symbol: "Q", rate: 7.78 },
+        "GYD": { name: "🇬🇾 Guyanese Dollar", symbol: "$", rate: 209.00 },
+        "HKD": { name: "🇭🇰 Hong Kong Dollar", symbol: "HK$", rate: 7.81 },
+        "HNL": { name: "🇭🇳 Honduran Lempira", symbol: "L", rate: 24.60 },
+        "HTG": { name: "🇭🇹 Haitian Gourde", symbol: "G", rate: 132.00 },
+        "HUF": { name: "🇭🇺 Hungarian Forint", symbol: "Ft", rate: 358.00 },
+        "IDR": { name: "🇮🇩 Indonesian Rupiah", symbol: "Rp", rate: 16000.00 },
+        "ILS": { name: "🇮🇱 Israeli New Shekel", symbol: "₪", rate: 3.72 },
+        "IMP": { name: "🇮🇲 Manx Pound", symbol: "£", rate: 0.79 },
+        "INR": { name: "🇮🇳 Indian Rupee", symbol: "₹", rate: 83.50 },
+        "IQD": { name: "🇮🇶 Iraqi Dinar", symbol: "ع.د", rate: 1310.00 },
+        "IRR": { name: "🇮🇷 Iranian Rial", symbol: "﷼", rate: 42000.00 },
+        "ISK": { name: "🇮🇸 Icelandic Króna", symbol: "kr", rate: 139.00 },
+        "JEP": { name: "🇯🇪 Jersey Pound", symbol: "£", rate: 0.79 },
+        "JMD": { name: "🇯🇲 Jamaican Dollar", symbol: "J$", rate: 156.00 },
+        "JOD": { name: "🇯🇴 Jordanian Dinar", symbol: "د.ا", rate: 0.709 },
+        "JPY": { name: "🇯🇵 Japanese Yen", symbol: "¥", rate: 155.00 },
+        "KES": { name: "🇰🇪 Kenyan Shilling", symbol: "KSh", rate: 131.00 },
+        "KGS": { name: "🇰🇬 Kyrgyzstani Som", symbol: "лв", rate: 88.00 },
+        "KHR": { name: "🇰🇭 Cambodian Riel", symbol: "៛", rate: 4080.00 },
+        "KID": { name: "🇰🇮 Kiribati Dollar", symbol: "$", rate: 1.50 },
+        "KMF": { name: "🇰🇲 Comorian Franc", symbol: "CF", rate: 454.00 },
+        "KPW": { name: "🇰🇵 North Korean Won", symbol: "₩", rate: 900.00 },
+        "KRW": { name: "🇰🇷 South Korean Won", symbol: "₩", rate: 1360.00 },
+        "KWD": { name: "🇰🇼 Kuwaiti Dinar", symbol: "د.ك", rate: 0.308 },
+        "KYD": { name: "🇰🇾 Cayman Islands Dollar", symbol: "$", rate: 0.83 },
+        "KZT": { name: "🇰🇿 Kazakhstani Tenge", symbol: "₸", rate: 440.00 },
+        "LAK": { name: "🇱🇦 Lao Kip", symbol: "₭", rate: 21300.00 },
+        "LBP": { name: "🇱🇧 Lebanese Pound", symbol: "£", rate: 89500.00 },
+        "LKR": { name: "🇱🇰 Sri Lankan Rupee", symbol: "Rs", rate: 300.00 },
+        "LRD": { name: "🇱🇷 Liberian Dollar", symbol: "$", rate: 193.00 },
+        "LSL": { name: "🇱🇸 Lesotho Loti", symbol: "L", rate: 18.20 },
+        "LYD": { name: "🇱🇾 Libyan Dinar", symbol: "ل.د", rate: 4.85 },
+        "MAD": { name: "🇲🇦 Moroccan Dirham", symbol: "د.م.", rate: 10.05 },
+        "MDL": { name: "🇲🇩 Moldovan Leu", symbol: "L", rate: 17.70 },
+        "MGA": { name: "🇲🇬 Malagasy Ariary", symbol: "Ar", rate: 4430.00 },
+        "MKD": { name: "🇲🇰 Macedonian Denar", symbol: "ден", rate: 56.60 },
+        "MMK": { name: "🇲🇲 Myanmar Kyat", symbol: "K", rate: 2100.00 },
+        "MNT": { name: "🇲🇳 Mongolian Tögrög", symbol: "₮", rate: 3380.00 },
+        "MOP": { name: "🇲🇴 Macanese Pataca", symbol: "P", rate: 8.05 },
+        "MRU": { name: "🇲🇷 Mauritanian Ouguiya", symbol: "UM", rate: 39.50 },
+        "MUR": { name: "🇲🇺 Mauritian Rupee", symbol: "₨", rate: 46.20 },
+        "MVR": { name: "🇲🇻 Maldivian Rufiyaa", symbol: "Rf", rate: 15.40 },
+        "MWK": { name: "🇲🇼 Malawian Kwacha", symbol: "MK", rate: 1730.00 },
+        "MXN": { name: "🇲🇽 Mexican Peso", symbol: "$", rate: 16.70 },
+        "MYR": { name: "🇲🇾 Malaysian Ringgit", symbol: "RM", rate: 4.70 },
+        "MZN": { name: "🇲🇿 Mozambican Metical", symbol: "MT", rate: 63.80 },
+        "NAD": { name: "🇳🇦 Namibian Dollar", symbol: "$", rate: 18.20 },
+        "NGN": { name: "🇳🇬 Nigerian Naira", symbol: "₦", rate: 1350.00 },
+        "NIO": { name: "🇳🇮 Nicaraguan Córdoba", symbol: "C$", rate: 36.80 },
+        "NOK": { name: "🇳🇴 Norwegian Krone", symbol: "kr", rate: 10.50 },
+        "NPR": { name: "🇳🇵 Nepalese Rupee", symbol: "रू", rate: 133.50 },
+        "NZD": { name: "🇳🇿 New Zealand Dollar", symbol: "NZ$", rate: 1.63 },
+        "OMR": { name: "🇴🇲 Omani Rial", symbol: "ر.ع.", rate: 0.385 },
+        "PAB": { name: "🇵🇦 Panamanian Balboa", symbol: "B/.", rate: 1.00 },
+        "PEN": { name: "🇵🇪 Peruvian Sol", symbol: "S/", rate: 3.72 },
+        "PGK": { name: "🇵🇬 Papua New Guinean Kina", symbol: "K", rate: 3.86 },
+        "PHP": { name: "🇵🇭 Philippine Peso", symbol: "₱", rate: 57.50 },
+        "PKR": { name: "🇵🇰 Pakistani Rupee", symbol: "₨", rate: 278.00 },
+        "PLN": { name: "🇵🇱 Polish Złoty", symbol: "zł", rate: 3.95 },
+        "PYG": { name: "🇵🇾 Paraguayan Guaraní", symbol: "₲", rate: 7500.00 },
+        "QAR": { name: "🇶🇦 Qatari Riyal", symbol: "ر.ق", rate: 3.64 },
+        "RON": { name: "🇷🇴 Romanian Leu", symbol: "lei", rate: 4.60 },
+        "RSD": { name: "🇷🇸 Serbian Dinar", symbol: "дин", rate: 108.00 },
+        "RUB": { name: "🇷🇺 Russian Ruble", symbol: "₽", rate: 90.00 },
+        "RWF": { name: "🇷🇼 Rwandan Franc", symbol: "FRw", rate: 1300.00 },
+        "SAR": { name: "🇸🇦 Saudi Riyal", symbol: "﷼", rate: 3.75 },
+        "SBD": { name: "🇸🇧 Solomon Islands Dollar", symbol: "$", rate: 8.50 },
+        "SCR": { name: "🇸🇨 Seychellois Rupee", symbol: "₨", rate: 13.60 },
+        "SDG": { name: "🇸🇩 Sudanese Pound", symbol: "ج.س.", rate: 600.00 },
+        "SEK": { name: "🇸🇪 Swedish Krona", symbol: "kr", rate: 10.60 },
+        "SGD": { name: "🇸🇬 Singapore Dollar", symbol: "S$", rate: 1.35 },
+        "SHP": { name: "🇸🇭 Saint Helena Pound", symbol: "£", rate: 0.79 },
+        "SLE": { name: "🇸🇱 Sierra Leonean Leone", symbol: "Le", rate: 22.50 },
+        "SOS": { name: "🇸🇴 Somali Shilling", symbol: "Sh", rate: 570.00 },
+        "SRD": { name: "🇸🇷 Surinamese Dollar", symbol: "$", rate: 32.50 },
+        "SSP": { name: "🇸🇸 South Sudanese Pound", symbol: "£", rate: 130.00 },
+        "STN": { name: "🇸🇹 São Tomé Príncipe Dobra", symbol: "Db", rate: 22.70 },
+        "SYP": { name: "🇸🇾 Syrian Pound", symbol: "£", rate: 13000.00 },
+        "SZL": { name: "🇸🇿 Swazi Lilangeni", symbol: "L", rate: 18.20 },
+        "THB": { name: "🇹🇭 Thai Baht", symbol: "฿", rate: 36.50 },
+        "TJS": { name: "🇹🇯 Tajikistani Somoni", symbol: "ЅМ", rate: 10.90 },
+        "TMT": { name: "🇹🇲 Turkmenistani Manat", symbol: "m", rate: 3.50 },
+        "TND": { name: "🇹🇳 Tunisian Dinar", symbol: "د.ت", rate: 3.12 },
+        "TOP": { name: "🇹🇴 Tongan Paʻanga", symbol: "T$", rate: 2.35 },
+        "TRY": { name: "🇹🇷 Turkish Lira", symbol: "₺", rate: 32.20 },
+        "TTD": { name: "🇹🇹 Trinidad and Tobago Dollar", symbol: "TT$", rate: 6.78 },
+        "TVD": { name: "🇹🇼 Tuvaluan Dollar", symbol: "$", rate: 1.50 },
+        "TWD": { name: "🇹🇼 New Taiwan Dollar", symbol: "NT$", rate: 32.30 },
+        "TZS": { name: "🇹🇿 Tanzanian Shilling", symbol: "TSh", rate: 2580.00 },
+        "UAH": { name: "🇺🇦 Ukrainian Hryvnia", symbol: "₴", rate: 39.50 },
+        "UGX": { name: "🇺🇬 Ugandan Shilling", symbol: "USh", rate: 3800.00 },
+        "USD": { name: "🇺🇸 United States Dollar", symbol: "$", rate: 1.00 },
+        "UYU": { name: "🇺🇾 Uruguayan Peso", symbol: "$U", rate: 38.50 },
+        "UZS": { name: "🇺🇿 Uzbekistani So'm", symbol: "лв", rate: 12600.00 },
+        "VES": { name: "🇻🇪 Venezuelan Bolívar", symbol: "Bs.S", rate: 36.40 },
+        "VND": { name: "🇻🇳 Vietnamese Đồng", symbol: "₫", rate: 25400.00 },
+        "VUV": { name: "🇻🇺 Vanuatu Vatu", symbol: "VT", rate: 119.00 },
+        "WST": { name: "🇼🇸 Samoan Tālā", symbol: "WS$", rate: 2.75 },
+        "XAF": { name: "🇨🇲 Central African CFA Franc", symbol: "FCFA", rate: 605.00 },
+        "XCD": { name: "🇦🇬 East Caribbean Dollar", symbol: "$", rate: 2.70 },
+        "XOF": { name: "🇸🇳 West African CFA Franc", symbol: "CFA", rate: 605.00 },
+        "XPF": { name: "🇵🇫 CFP Franc", symbol: "₣", rate: 110.00 },
+        "YER": { name: "🇾🇪 Yemeni Rial", symbol: "﷼", rate: 250.00 },
+        "ZAR": { name: "🇿🇦 South African Rand", symbol: "R", rate: 18.20 },
+        "ZMW": { name: "🇿🇲 Zambian Kwacha", symbol: "ZK", rate: 26.50 },
+        "ZWL": { name: "🇿🇼 Zimbabwean Dollar", symbol: "$", rate: 322.00 }
+    };
+
+    const convertCurrencyBtn = document.getElementById('convertCurrencyBtn');
+    const fromCurrency = document.getElementById('fromCurrency');
+    const toCurrency = document.getElementById('toCurrency');
+
+    if (convertCurrencyBtn && fromCurrency && toCurrency) {
+        const sortedCodes = Object.keys(currencyData).sort();
+        
+        sortedCodes.forEach(code => {
+            const data = currencyData[code];
+            const optionText = `${data.name} - ${code}`;
+            
+            fromCurrency.appendChild(new Option(optionText, code));
+            toCurrency.appendChild(new Option(optionText, code));
+        });
+
+        fromCurrency.value = "USD";
+        toCurrency.value = "INR";
+
+        convertCurrencyBtn.addEventListener('click', () => {
+            const amount = parseFloat(document.getElementById('amountInput').value);
+            const currencyResult = document.getElementById('currencyResult');
+            const from = fromCurrency.value;
+            const to = toCurrency.value;
+
+            if (isNaN(amount) || amount <= 0) {
+                if(currencyResult) currencyResult.textContent = 'Invalid amount';
+                return;
+            }
+
+            const fromRate = currencyData[from].rate;
+            const toRate = currencyData[to].rate;
+            
+            const converted = (amount * (toRate / fromRate)).toFixed(2);
+            const fromSym = currencyData[from].symbol;
+            const toSym = currencyData[to].symbol;
+            
+            if(currencyResult) {
+                currencyResult.innerHTML = `<span style="color:var(--text-muted); font-size: 1.2rem;">${fromSym}${amount}</span><br>=<br><span style="color:var(--accent); font-size: 2rem;">${toSym}${converted}</span>`;
+            }
+            
+            saveToHistory('FX', `${fromSym}${amount} → ${to}`, `${toSym}${converted}`);
+        });
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (document.activeElement.tagName === 'INPUT') return;
+
+        const key = event.key;
+        let targetButton = null;
+
+        if (/[0-9\.]/.test(key)) {
+            targetButton = document.querySelector(`.key.number[data-val="${key}"]`);
+        } else if (['+', '-', '*', '/', '%'].includes(key)) {
+            targetButton = document.querySelector(`.key.operator[data-val="${key}"]`);
+        } else if (key === 'Enter' || key === '=') {
+            event.preventDefault();
+            targetButton = document.querySelector('.key.equals');
+        } else if (key === 'Backspace') {
+            targetButton = document.querySelector('.key.action[data-action="delete"]');
+        } else if (key === 'Escape') {
+            targetButton = document.querySelector('.key.action[data-action="clear"]');
+        }
+
+        if (targetButton) {
+            targetButton.click();
+            
+            const originalBg = targetButton.style.backgroundColor || '';
+            targetButton.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+            
+            setTimeout(() => {
+                targetButton.style.backgroundColor = originalBg;
+            }, 100);
+        }
+    });
+});

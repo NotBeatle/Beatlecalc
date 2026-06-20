@@ -1,6 +1,6 @@
-<div align="center">
-  <img src="https://raw.githubusercontent.com/NotBeatle/Beatlecalc/main/assets/%20logo.png" alt="Beatle Calc Logo" width="150">
-</div>
+<img src="https://raw.githubusercontent.com/NotBeatle/Beatlecalc/main/assets/%20logo.png" alt="Beatle Calc Logo" width="150">
+
+![Android](https://img.shields.io/badge/Android-3DDC84?style=flat&logo=android&logoColor=white) ![Vanilla JS](https://img.shields.io/badge/Vanilla_JS-F7DF1E?style=flat&logo=javascript&logoColor=black) ![Offline](https://img.shields.io/badge/Status-100%25_Offline-brightgreen?style=flat) ![Repo Size](https://img.shields.io/github/repo-size/NotBeatle/Beatlecalc?style=flat) [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://instagram.com/Notbeatle)
 
 # 🌐 4-in-1 Utility Web & Native App
 

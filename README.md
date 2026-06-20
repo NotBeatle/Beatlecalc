@@ -2,9 +2,7 @@
 
 <br>
 
-[![Download APK](https://img.shields.io/badge/Download_APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/NotBeatle/Beatlecalc/releases) [![Vanilla JS](https://img.shields.io/badge/Vanilla_JS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) 
-![Offline](https://img.shields.io/badge/Status-100%25_Offline-brightgreen?style=for-the-badge) ![Repo Size](https://img.shields.io/badge/Repo_Size-8_MB-blue?style=for-the-badge) 
-[![Follow on Instagram](https://img.shields.io/badge/Follow_on_Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/Notbeatle)
+[![Download APK](https://img.shields.io/badge/Download_APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/NotBeatle/Beatlecalc/releases/latest) [![Vanilla JS](https://img.shields.io/badge/Vanilla_JS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![Offline](https://img.shields.io/badge/Status-100%25_Offline-brightgreen?style=for-the-badge)](#-) [![Repo Size](https://img.shields.io/badge/Repo_Size-8_MB-blue?style=for-the-badge)](#-) [![Follow on Instagram](https://img.shields.io/badge/Follow_on_Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/Notbeatle)
 
 # 🌐 4-in-1 Utility Web & Native App
 

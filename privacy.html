@@ -7,12 +7,12 @@
     <style>
         * {
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* Kills the blue tap flash */
+            -webkit-tap-highlight-color: transparent;
             outline: none;
         }
 
         body {
-            background-color: #0a0a0a; /* Exact dark background */
+            background-color: #0a0a0a;
             color: #ffffff;
             margin: 0;
             padding: 24px;
@@ -20,15 +20,14 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding-bottom: 90px; /* Space so text doesn't hide behind the button */
+            padding-bottom: 90px;
         }
 
-        /* Top Bar Layout */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px; /* Reduced to save vertical space */
+            margin-bottom: 25px;
         }
 
         .page-title {
@@ -38,7 +37,6 @@
             letter-spacing: -0.5px;
         }
 
-        /* Ultra-thin Cross Button */
         .close-btn {
             display: flex;
             align-items: center;
@@ -55,46 +53,43 @@
             height: 26px;
         }
 
-        /* Main Content Typography */
         .content {
             flex-grow: 1;
-            overflow-y: hidden; /* Locks scrolling */
+            overflow-y: hidden;
         }
 
-        /* Tighter, smaller text to fit on one screen */
         .legal-text {
             color: #a3a3a3;
-            line-height: 1.4; /* Tighter line spacing */
-            font-size: 13px; /* Reduced from 15px */
+            line-height: 1.4;
+            font-size: 13px;
         }
 
         .legal-text h2 {
             color: #ffffff;
-            font-size: 15px; /* Reduced from 18px */
-            margin-top: 16px; /* Tighter spacing */
+            font-size: 15px;
+            margin-top: 16px;
             margin-bottom: 6px;
         }
 
         .legal-text p {
             margin-top: 0;
-            margin-bottom: 12px; /* Tighter spacing */
+            margin-bottom: 12px;
         }
 
         .policy-footer {
             text-align: center;
             color: #737373;
-            font-size: 12px; /* Reduced size */
-            margin-top: 20px; /* Pulled up closer */
+            font-size: 12px;
+            margin-top: 20px;
             margin-bottom: 0;
         }
 
         hr {
             border: 0;
             border-top: 1px solid #262626;
-            margin: 20px 0; /* Tighter spacing */
+            margin: 20px 0;
         }
 
-        /* Fixed Bottom Container for the Pill Button */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -104,7 +99,6 @@
             background: linear-gradient(transparent, #0a0a0a 20%);
         }
 
-        /* Exact White Pill Button */
         .return-btn {
             display: block;
             width: 100%;
@@ -113,7 +107,7 @@
             color: #000000;
             text-align: center;
             text-decoration: none;
-            border-radius: 9999px; /* Forces the perfect pill shape */
+            border-radius: 9999px;
             font-size: 16px;
             font-weight: 500;
             border: none;
@@ -140,7 +134,6 @@
 
     <div class="content">
         <div class="legal-text">
-            
             <p>Your privacy is important to us. This application is designed to function as a standalone offline utility.</p>
 
             <h2>1. Data Collection</h2>
@@ -151,7 +144,6 @@
 
             <h2>3. Policy Updates</h2>
             <p>We reserve the right to update this Privacy Policy as new features are added. Any changes will be immediately reflected on this page within the application.</p>
-            
         </div>
         
         <hr>
@@ -170,9 +162,8 @@
     <script>
         document.addEventListener("deviceready", function() {
             document.addEventListener("backbutton", function (e) {
-                e.preventDefault(); 
-                // Native step backward, kills the loop instantly
-                window.history.back(); 
+                e.preventDefault();
+                window.history.back();
             }, false);
         }, false);
     </script>

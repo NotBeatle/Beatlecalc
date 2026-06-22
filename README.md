@@ -1,18 +1,27 @@
+# 🌐 Beatle Calc | 4-in-1 Utility App
 
-<img align="left" src="https://raw.githubusercontent.com/NotBeatle/Beatlecalc/main/assets/%20logo.png" alt="Beatle Calc Logo" width="160" hspace="20">
-
-
-# 🌐 4-in-1 Utility App
-
-> *"You forget a thousand things every day, pal. Make sure this is one of 'em."*
-
-[![Download APK](https://img.shields.io/badge/Download_APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/NotBeatle/Beatlecalc/releases/latest) [![Live Demo](https://img.shields.io/badge/Live_Demo-000000?style=for-the-badge&logo=githubpages&logoColor=white)](https://notbeatle.github.io/Beatlecalc/) [![Follow on Instagram](https://img.shields.io/badge/Follow_on_Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/Notbeatle)
-<br>
-[![Vanilla JS](https://img.shields.io/badge/Vanilla_JS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS) [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-<br>
-[![Offline](https://img.shields.io/badge/Status-100%25_Offline-brightgreen?style=for-the-badge)](#-) [![Repo Size](https://img.shields.io/badge/Repo_Size-8_MB-blue?style=for-the-badge)](#-)
-
-<br clear="left"/>
+<table>
+  <tr>
+    <td width="180px" align="center" valign="top">
+      <img src="https://raw.githubusercontent.com/NotBeatle/Beatlecalc/main/assets/%20logo.png" alt="Beatle Calc Logo" width="160">
+    </td>
+    <td valign="top">
+      <blockquote><i>"You forget a thousand things every day, pal. Make sure this is one of 'em."</i></blockquote>
+      <br>
+      <a href="https://github.com/NotBeatle/Beatlecalc/releases/latest"><img src="https://img.shields.io/badge/Download_APK-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download APK"></a>
+      <a href="https://notbeatle.github.io/Beatlecalc/"><img src="https://img.shields.io/badge/Live_Demo-000000?style=for-the-badge&logo=githubpages&logoColor=white" alt="Live Demo"></a>
+      <a href="https://instagram.com/Notbeatle"><img src="https://img.shields.io/badge/Follow_on_Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Follow on Instagram"></a>
+      <br><br>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/Vanilla_JS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="Vanilla JS"></a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"></a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"></a>
+      <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
+      <br><br>
+      <img src="https://img.shields.io/badge/Status-100%25_Offline-brightgreen?style=for-the-badge" alt="Offline">
+      <img src="https://img.shields.io/badge/Repo_Size-8_MB-blue?style=for-the-badge" alt="Repo Size">
+    </td>
+  </tr>
+</table>
 
 ---
 

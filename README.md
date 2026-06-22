@@ -17,8 +17,8 @@
       <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"></a>
       <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
       <br><br>
-      <img src="https://img.shields.io/badge/Status-100%25_Offline-brightgreen?style=for-the-badge" alt="Offline">
-      <img src="https://img.shields.io/badge/Repo_Size-8_MB-blue?style=for-the-badge" alt="Repo Size">
+      <a href="javascript:void(0)" style="pointer-events: none;"><img src="https://img.shields.io/badge/Status-100%25_Offline-brightgreen?style=for-the-badge" alt="Offline"></a>
+      <a href="javascript:void(0)" style="pointer-events: none;"><img src="https://img.shields.io/badge/Repo_Size-8_MB-blue?style=for-the-badge" alt="Repo Size"></a>
     </td>
   </tr>
 </table>

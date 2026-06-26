@@ -6,6 +6,24 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://notbeatle.github.io/Beatlecalc/">
+    <meta property="og:title" content="Beatle Calc | Native Utility">
+    <meta property="og:description" content="A clean, completely offline utility calculator app.">
+    <meta property="og:image" content="https://notbeatle.github.io/Beatlecalc/preview.png">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <title>Beatle Calc | Native Utility</title>
     <link rel="stylesheet" href="css/style.css?v=8">
     <style>
@@ -22,10 +40,13 @@
         .key {
             min-height: 0 !important; 
         }
-
         .tool-section.form-section {
             overflow-y: auto !important; 
             padding-bottom: 90px !important; 
+        }
+        /* Ensure SVGs inherit the correct color in buttons */
+        .icon-btn svg {
+            stroke: currentColor;
         }
     </style>
 </head>
@@ -42,9 +63,19 @@
                     </button>
                     <h1 id="currentToolTitle" style="margin: 0;">Main Calculator</h1>
                 </div>
-                <div class="header-controls">
-                    <button id="themeToggle" class="icon-btn">🌙</button>
-                    <button id="menuToggle" class="icon-btn">☰</button>
+                <div class="header-controls" style="display: flex; gap: 12px; align-items: center;">
+                    <button id="themeToggle" class="icon-btn" style="background: none; border: none; padding: 0; cursor: pointer; display: flex; color: var(--text-main);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <button id="menuToggle" class="icon-btn" style="background: none; border: none; padding: 0; cursor: pointer; display: flex; color: var(--text-main);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
                 </div>
             </header>
 
@@ -223,7 +254,9 @@
                 <div class="brand">
                     <h2>Beatle Calc</h2>
                 </div>
-                <button id="closeMenuBtn" class="icon-btn">✕</button>
+                <button id="closeMenuBtn" class="icon-btn" style="background: none; border: none; color: var(--text-main); cursor: pointer;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
             </div>
             
             <div class="search-container" style="margin-bottom: 15px;">
